@@ -36,14 +36,14 @@ export default class Db {
         const query = `SELECT ${col} from ${table} WHERE ${col} >= :ts ORDER BY ${col} DESC LIMIT 1`
         const rowObj = this.db.prepare(query).getAsObject({ ':ts': ts })
 
-        return rowObj[col] ? +rowObj[col]! + 1 : ts
+        return rowObj[col] ? Number(rowObj[col]) + 1 : ts
     }
 
     getNoteId (guid: string, ts: number) {
         const query = 'SELECT id from notes WHERE guid = :guid ORDER BY id DESC LIMIT 1'
         const rowObj = this.db.prepare(query).getAsObject({ ':guid': guid })
 
-        return rowObj.id || this.getId('notes', 'id', ts)
+        return Number(rowObj.id) || this.getId('notes', 'id', ts)
     }
 
     generateGuid (deckId: number) {

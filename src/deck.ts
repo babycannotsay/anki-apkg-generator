@@ -19,8 +19,7 @@ export default class Deck {
     }
 
     writeToDatabase (db: Db) {
-        const { description, name } = this
-        const id = 3232
+        const { id, description, name } = this
         const topDeckId = db.getId('cards', 'did', id)
         const decks = db.getInitialRowValue('col', 'decks')
         const deck = db.getLastItem(decks)

@@ -22,8 +22,7 @@ export default class Model {
 
     constructor (name: string, card: Card) {
         this.fields = []
-        this.id = 44444
-        // this.id = Date.now();
+        this.id = Date.now()
         this.name = name
         this.card = card
     }

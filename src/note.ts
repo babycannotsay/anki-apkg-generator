@@ -53,14 +53,13 @@ export default class Note {
         this.checkNumberModelFieldsMatchesNumFields()
         // this.checkInvalidHtmlTagsInFields()
         const timestamp = Date.now()
-        const note_guid = db.generateGuid(deckId)
-        // const id = db.getNoteId(note_guid, this.id);
-        const id = 1
+        const noteGuid = db.generateGuid(deckId)
+        const id = db.getNoteId(noteGuid, this.id)
         db.update(
             'insert or replace into notes values(:id,:guid,:mid,:mod,:usn,:tags,:flds,:sfld,:csum,:flags,:data)',
             {
                 ':id': id, // integer primary key,
-                ':guid': '222', // text not null,
+                ':guid': noteGuid, // text not null,
                 ':mid': this.model.id, // integer not null,
                 ':mod': db.getId('notes', 'mod', timestamp), // integer not null,
                 ':usn': -1, // integer not null,

@@ -36,7 +36,7 @@ async function test () {
     deck.addNote(note)
     const pkg = new Package(deck)
     const zip: any = await pkg.writeToFile()
-    const target = 'test.apkg'
+    const target = './test.apkg'
     fs.writeFileSync(target, zip, 'binary')
 
     console.log('success')
