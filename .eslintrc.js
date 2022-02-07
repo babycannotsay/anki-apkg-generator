@@ -27,6 +27,7 @@ module.exports = {
         'no-multiple-empty-lines': 'error',
         'no-trailing-spaces': 'error',
         'block-spacing': 'error',
-        'space-before-blocks': 'error'
+        'space-before-blocks': 'error',
+        'eol-last': ['error', 'always']
     }
 }

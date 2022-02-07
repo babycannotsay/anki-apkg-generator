@@ -1,6 +1,5 @@
 import type Db from './database'
 import type Model from './model'
-import { ModelKinds } from './model'
 export default class Note {
     public id: number
     public model: Model
@@ -29,21 +28,26 @@ export default class Note {
         return this
     }
 
-    fixDeprecatedBuiltinModelsAndWarn () {
-        if (
-            this.model.kind === ModelKinds.Close &&
-            this.fieldsValue.length === 1
-        ) {
-            return [...this.fieldsValue, '']
-        }
-        return this.fieldsValue
-    }
+    // private _fixDeprecatedBuiltinModelsAndWarn () {
+    //     if (
+    //         this.model.kind === ModelKinds.Close &&
+    //         this.fieldsValue.length === 1
+    //     ) {
+    //         return [...this.fieldsValue, '']
+    //     }
+    //     return this.fieldsValue
+    // }
 
-    checkNumberModelFieldsMatchesNumFields () {
+    private _checkNumberModelFieldsMatchesNumFields () {
+        //
+        console.log(this.model.fields)
         if (this.model.fields.length !== this.fieldsValue.length) {
             throw new Error(`
                 length of fields in Model does not match length of fieldsValue in Note: ${this.model.name} has ${this.model.fields.length} fields, but note has ${this.fieldsValue.length} fieldsValue
             `)
+        }
+        if (this.model.fields.length === 0) {
+            throw new Error('fields can not be empty')
         }
     }
 
@@ -54,8 +58,8 @@ export default class Note {
     // }
 
     writeToDatabase (db: Db, deckId: number) {
-        this.fieldsValue = this.fixDeprecatedBuiltinModelsAndWarn()
-        this.checkNumberModelFieldsMatchesNumFields()
+        // this.fieldsValue = this._fixDeprecatedBuiltinModelsAndWarn()
+        this._checkNumberModelFieldsMatchesNumFields()
         // this.checkInvalidHtmlTagsInFields()
         const timestamp = Date.now()
         const noteGuid = db.generateGuid(deckId)
