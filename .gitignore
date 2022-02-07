@@ -1,2 +1,4 @@
 /node_modules
-/test.apkg
+/*.apkg
+/coverage
+yarn-error.log
