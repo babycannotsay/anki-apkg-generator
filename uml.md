@@ -6,6 +6,7 @@ class Deck {
     +notes: Note[]
     +description?: string
     +constructor(name: string, description = "")
+    +setId(id: number)
     +addNote(note: Note)
     +writeToDatabase(db: Db)
 }
@@ -17,6 +18,7 @@ class Note {
     +tags: string[]
     +fieldsValue: string[]
     +constructor(model: Model)
+    +setId(id: number)
     +setFieldsValue(values: string[])
     +setTags(tags: string[])
     +writeToDatabase(db: Db, deckId: number)
@@ -37,6 +39,7 @@ class Model {
     +card: Card
     +fields: Field[]
     +constructor(name: string, card: Card)
+    +setId(id: number)
     +setFields(fields: Field[])
     +setSortIndex(index: number)
     +setRtl(rtl: boolean)

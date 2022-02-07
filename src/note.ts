@@ -14,6 +14,11 @@ export default class Note {
         this.model = model
     }
 
+    setId (id: number) {
+        this.id = id
+        return this
+    }
+
     setFieldsValue (fieldsValue: string[] = []) {
         this.fieldsValue = fieldsValue
         return this

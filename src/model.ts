@@ -27,6 +27,11 @@ export default class Model {
         this.card = card
     }
 
+    setId (id: number) {
+        this.id = id
+        return this
+    }
+
     setFields (fields: Field[]) {
         this.fields = fields
         return this

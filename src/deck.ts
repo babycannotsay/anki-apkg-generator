@@ -13,6 +13,11 @@ export default class Deck {
         this.notes = []
     }
 
+    setId (id: number) {
+        this.id = id
+        return this
+    }
+
     addNote (note: Note) {
         this.notes.push(note)
         return this
