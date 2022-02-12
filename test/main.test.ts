@@ -12,8 +12,7 @@ describe('main', () => {
     const fieldsLength = Math.ceil(Math.random() * 10)
 
     describe('card', () => {
-        card = new Card(name)
-        expect(card.name).toBe(name)
+        card = new Card()
         expect(card.css).toBe('')
         expect(card.templates).toEqual([])
 
@@ -31,6 +30,7 @@ describe('main', () => {
     })
 
     describe('field', () => {
+        expect(new Field().name).toBe('')
         const field = new Field(name)
         expect(field.name).toBe(name)
 
@@ -51,10 +51,13 @@ describe('main', () => {
     })
 
     describe('model', () => {
-        model = new Model(name, card)
-        expect(model.name).toBe(name)
+        model = new Model(card)
+        expect(model.name).toBe('')
         expect(model.fields).toEqual([])
         expect(model.card).toBe(card)
+
+        model.setName(name)
+        expect(model.name).toBe(name)
 
         model.setId(id)
         expect(id).toBe(id)
@@ -91,18 +94,22 @@ describe('main', () => {
         expect(note.model).toBe(model)
         expect(note.fieldsValue).toEqual([])
         expect(note.tags).toEqual([])
+        expect(note.name).toBe('')
+
+        note.setName(name)
+        expect(note.name).toBe(name)
 
         note.setId(id)
         expect(note.id).toBe(id)
 
         const arr = Array.from({ length: fieldsLength }).map((_, index) => `${index}`)
 
-        note.setFieldsValue([])
+        note.setFieldsValue()
         expect(note.fieldsValue).toEqual([])
         note.setFieldsValue(arr)
         expect(note.fieldsValue).toBe(arr)
 
-        note.setTags([])
+        note.setTags()
         expect(note.tags).toEqual([])
         note.setTags(arr)
         expect(note.tags).toBe(arr)
@@ -120,14 +127,23 @@ describe('main', () => {
     })
 
     describe('media', () => {
-        const data = Buffer.from('data')
-        media = new Media(name, data)
-        expect(media.filename).toBe(name)
+        const data = 'data'
+        media = new Media(data)
+        expect(media.filename).toBe('')
         expect(media.data).toBe(data)
+        expect(media.base64).toBe(false)
+        expect(typeof media.checksum === 'string').toBeTruthy()
+
+        media.setFilename(name)
+        expect(media.filename).toBe(name)
+
+        media.setBase64(true)
+        expect(media.base64).toBe(true)
     })
 
     describe('package', () => {
         test('example', async () => {
+            expect(new Package(deck).medias).toEqual([])
             const pkg = new Package(deck, [ media ])
             const zip = await pkg.writeToFile()
             expect(zip).toBeInstanceOf(Buffer)

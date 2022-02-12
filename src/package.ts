@@ -40,7 +40,7 @@ export default class Package {
         zip.file('collection.anki2', Buffer.from(binaryArray))
         zip.file('media', JSON.stringify(mediaObj))
 
-        medias.forEach((item, i) => zip.file(String(i), item.data))
+        medias.forEach((item, i) => zip.file(String(i), item.data, { base64: item.base64 }))
 
         if (
             process.env.APP_ENV === 'browser' ||

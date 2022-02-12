@@ -5,12 +5,18 @@ export default class Note {
     public model: Model
     public fieldsValue: string[]
     public tags: string[]
+    public name = ''
 
     constructor (model: Model) {
         this.id = Date.now()
         this.fieldsValue = []
         this.tags = []
         this.model = model
+    }
+
+    setName (name: string) {
+        this.name = name
+        return this
     }
 
     setId (id: number) {
@@ -40,7 +46,6 @@ export default class Note {
 
     private _checkNumberModelFieldsMatchesNumFields () {
         //
-        console.log(this.model.fields)
         if (this.model.fields.length !== this.fieldsValue.length) {
             throw new Error(`
                 length of fields in Model does not match length of fieldsValue in Note: ${this.model.name} has ${this.model.fields.length} fields, but note has ${this.fieldsValue.length} fieldsValue
@@ -62,7 +67,7 @@ export default class Note {
         this._checkNumberModelFieldsMatchesNumFields()
         // this.checkInvalidHtmlTagsInFields()
         const timestamp = Date.now()
-        const noteGuid = db.generateGuid(deckId)
+        const noteGuid = db.generateGuid(deckId, this.name)
         const id = db.getNoteId(noteGuid, this.id)
         db.update(
             'insert or replace into notes values(:id,:guid,:mid,:mod,:usn,:tags,:flds,:sfld,:csum,:flags,:data)',

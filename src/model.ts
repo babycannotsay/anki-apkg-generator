@@ -8,7 +8,7 @@ export enum ModelKinds {
 
 export default class Model {
     public id: number
-    public name: string
+    public name = ''
     public sticky = false
     public rtl = false
     public fields: Field[]
@@ -20,11 +20,15 @@ export default class Model {
     public latexPost = '\\end{document}'
     public latexsvg = false
 
-    constructor (name: string, card: Card) {
+    constructor (card: Card) {
         this.fields = []
         this.id = Date.now()
-        this.name = name
         this.card = card
+    }
+
+    setName (name: string) {
+        this.name = name
+        return this
     }
 
     setId (id: number) {

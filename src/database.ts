@@ -1,4 +1,4 @@
-import sha1 from 'sha1'
+import CryptoJS from 'crypto-js'
 import type { SqlJsStatic, Database, BindParams } from 'sql.js'
 
 export default class Db {
@@ -21,11 +21,7 @@ export default class Db {
     getLastItem = (obj: any) => {
         const keys = Object.keys(obj)
         const lastKey = keys[keys.length - 1]
-
-        const item = obj[lastKey]
-        delete obj[lastKey]
-
-        return item
+        return obj[lastKey]
     }
 
     private _getFirstVal (query: string) {
@@ -46,8 +42,8 @@ export default class Db {
         return Number(rowObj.id) || this.getId('notes', 'id', ts)
     }
 
-    generateGuid (deckId: number) {
-        return sha1(String(deckId))
+    generateGuid (deckId: number, name: string) {
+        return CryptoJS.SHA1(`${deckId}${name}`).toString()
     }
 
     getCardId (noteId: number, ts: number) {

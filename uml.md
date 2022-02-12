@@ -17,8 +17,10 @@ class Note {
     +model: Model
     +tags: string[]
     +fieldsValue: string[]
+    +name = ''
     +constructor(model: Model)
     +setId(id: number)
+    +setName(name: string)
     +setFieldsValue(values: string[])
     +setTags(tags: string[])
     +writeToDatabase(db: Db, deckId: number)
@@ -28,17 +30,18 @@ Deck::notes -> Note::constructor
 
 class Model {
     +id: number
-    +name: string
+    +name = ''
     +kind: ModalKinds
-    +rtl: boolean
-    +sticky: boolean
-    +sortIndex: number
+    +rtl = false
+    +sticky = false
+    +sortIndex = 0
     +latexPre: string
     +latexPost: string
-    +latexsvg: boolean
+    +latexsvg = false
     +card: Card
     +fields: Field[]
-    +constructor(name: string, card: Card)
+    +constructor(card: Card)
+    +setName(name: string)
     +setId(id: number)
     +setFields(fields: Field[])
     +setSortIndex(index: number)
@@ -64,20 +67,18 @@ ModelKinds <- Model::kind
 class Field {
     +ord: number
     +name: string
-    +font: string
-    +size: number
+    +font = 'Arial'
+    +size = 12
     +constructor(name = "")
     +setOrd(ord = 0)
     +setFont(font = "Arial")
     +setSize(size = 12)
 }
 class Card {
-    +templates: Template[]
-    +css: string
-    +name: string
-    +constructor(name: string)
-    +setCss(css: string)
-    +setTemplates(ts: Template[])
+    +templates: Template[] = []
+    +css = ''
+    +setCss(css = '')
+    +setTemplates(ts: Template[] = [])
     +writeToDatabase(db: Db, deckId: number, noteId: number, timestamp: number)
 }
 interface Template {
@@ -104,7 +105,12 @@ Package::decks -up-> Deck
 
 class Media {
     +filename: string
-    +data: Buffer
+    +data: string
+    +base64 = false
+    +checksum: string
+    +constructor (data: Buffer, filename = '')
+    +setFilename (filename: string)
+    +setBase64 (base64: boolean)
 }
 Package::medias -left-> Media
 @enduml

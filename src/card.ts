@@ -16,10 +16,6 @@ export interface Template {
 export default class Card {
     css = ''
     templates: Template[] = []
-    name: string
-    constructor (name: string) {
-        this.name = name
-    }
 
     setCss (css = '') {
         this.css = css

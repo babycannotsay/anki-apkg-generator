@@ -28,10 +28,7 @@ export default class Deck {
         const topDeckId = db.getId('cards', 'did', id)
         const decks = db.getInitialRowValue('col', 'decks')
         const deck = db.getLastItem(decks)
-        deck.name = name
-        deck.id = topDeckId
-        deck.desc = description
-        decks[`${topDeckId}`] = deck
+        decks[`${topDeckId}`] = { ...deck, id: topDeckId, desc: description, name }
         db.update('update col set decks=:decks where id=1', {
             ':decks': JSON.stringify(decks),
         })

@@ -8,7 +8,7 @@ async function test () {
         { name: 'MyMedia' },
     ]
 
-    const card = new Card('cardName')
+    const card = new Card()
     card.setCss().setTemplates([
         {
             name: 'Card 1',
@@ -17,9 +17,10 @@ async function test () {
         },
     ])
 
-    const model = new Model('modelName', card)
+    const model = new Model(card)
 
     model
+        .setName('modelName')
         .setSticky(true)
         .setFields(fields.map((f, index) => new Field(f.name).setOrd(index)))
 
