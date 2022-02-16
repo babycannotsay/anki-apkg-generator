@@ -39,8 +39,10 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'index.min.js',
-        library: 'AnkiGenerator', // ignore in node
-        libraryTarget: 'umd',
+        library: {
+            name: 'AnkiGenerator', // ignore in node
+            type: 'umd'
+        },
         globalObject: 'this',
     },
     target: 'web',
