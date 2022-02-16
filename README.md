@@ -2,6 +2,7 @@
 generate anki's apkg file by simple code
 
 ## Install
+`yarn add anki-apkg-generator`
 
 ## Suppoort
 - 上传多个Deck
@@ -26,7 +27,7 @@ generate anki's apkg file by simple code
 部分代码参考[anki-apkg-export](https://github.com/ewnd9/anki-apkg-export.git)(不支持上传多个deck)
 
 ## Related
-
+[parse-to-anki](https://github.com/babycannotsay/parse-to-anki.git)
 ## LIcense
 
 MIT
