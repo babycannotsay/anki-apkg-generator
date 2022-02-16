@@ -1,12 +1,15 @@
 {
   "name": "anki-apkg-generator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "generate anki's apkg file by code",
   "main": "lib/index.js",
   "browser": {
     "./lib/index.js": "./dist/index.min.js"
   },
-  "files": [ "/dist/index.min.js", "/lib" ],
+  "files": [
+    "/dist/index.min.js",
+    "/lib"
+  ],
   "scripts": {
     "webpack:dev": "NODE_ENV=development webpack",
     "webpack:prod": "NODE_ENV=production webpack",
