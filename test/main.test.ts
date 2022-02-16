@@ -127,18 +127,14 @@ describe('main', () => {
     })
 
     describe('media', () => {
-        const data = 'data'
+        const data = new TextEncoder().encode('data')
         media = new Media(data)
         expect(media.filename).toBe('')
         expect(media.data).toBe(data)
-        expect(media.base64).toBe(false)
         expect(typeof media.checksum === 'string').toBeTruthy()
 
         media.setFilename(name)
         expect(media.filename).toBe(name)
-
-        media.setBase64(true)
-        expect(media.base64).toBe(true)
     })
 
     describe('package', () => {

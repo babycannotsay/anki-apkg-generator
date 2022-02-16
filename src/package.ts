@@ -5,6 +5,8 @@ import type Deck from './deck'
 import Media from './media'
 import createTemplate from './template'
 
+const isBrowser = process.env.APP_ENV === 'browser' || typeof window !== 'undefined'
+
 export default class Package {
     public db!: Db
     public zip: Zip
@@ -17,7 +19,8 @@ export default class Package {
     }
 
     private _initSql () {
-        return initSqlJs().then(sql => {
+        const config = isBrowser ? { locateFile: (filename: string) => `https://sql.js.org/dist/${filename}` } : undefined
+        return initSqlJs(config).then(sql => {
             this.db = new Db(sql, createTemplate())
         })
     }
@@ -37,15 +40,12 @@ export default class Package {
             prev[idx] = curr.filename
             return prev
         }, {})
-        zip.file('collection.anki2', Buffer.from(binaryArray))
+        zip.file('collection.anki2', binaryArray)
         zip.file('media', JSON.stringify(mediaObj))
 
-        medias.forEach((item, i) => zip.file(String(i), item.data, { base64: item.base64 }))
+        medias.forEach((item, i) => zip.file(String(i), item.data))
 
-        if (
-            process.env.APP_ENV === 'browser' ||
-            typeof window !== 'undefined'
-        ) {
+        if (isBrowser) {
             return zip.generateAsync({ type: 'blob', ...options })
         } else {
             return zip.generateAsync({

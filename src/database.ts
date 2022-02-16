@@ -1,4 +1,4 @@
-import CryptoJS from 'crypto-js'
+import createHash from 'create-hash'
 import type { SqlJsStatic, Database, BindParams } from 'sql.js'
 
 export default class Db {
@@ -43,7 +43,7 @@ export default class Db {
     }
 
     generateGuid (deckId: number, name: string) {
-        return CryptoJS.SHA1(`${deckId}${name}`).toString()
+        return createHash('sha1').update(`${deckId}${name}`).digest('utf8')
     }
 
     getCardId (noteId: number, ts: number) {

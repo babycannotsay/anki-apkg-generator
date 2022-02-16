@@ -1,10 +1,9 @@
-import CryptoJS from 'crypto-js'
+import createHash from 'create-hash'
 
 export default class Media {
     public filename: string
-    public data: string
-    public base64 = false
-    constructor (data: string, filename = '') {
+    public data: ArrayBuffer
+    constructor (data: ArrayBuffer, filename = '') {
         this.filename = filename
         this.data = data
     }
@@ -12,11 +11,8 @@ export default class Media {
         this.filename = filename
         return this
     }
-    setBase64 (base64: boolean) {
-        this.base64 = base64
-        return this
-    }
     get checksum () {
-        return CryptoJS.MD5(this.data).toString(CryptoJS.enc.Hex)
+        const enc = new TextDecoder('utf-8')
+        return createHash('md5').update(enc.decode(this.data)).digest('hex')
     }
 }

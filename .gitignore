@@ -1,5 +1,6 @@
 /node_modules
-/*.apkg
 /coverage
-yarn-error.log
+/dist
 /lib
+yarn-error.log
+stats.json

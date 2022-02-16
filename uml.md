@@ -106,11 +106,9 @@ Package::decks -up-> Deck
 class Media {
     +filename: string
     +data: string
-    +base64 = false
     +checksum: string
     +constructor (data: Buffer, filename = '')
     +setFilename (filename: string)
-    +setBase64 (base64: boolean)
 }
 Package::medias -left-> Media
 @enduml
