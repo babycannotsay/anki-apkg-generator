@@ -13,11 +13,11 @@ generate anki's apkg file by simple code
 建议阅读上方[Constructor](#constructor)后，查看[exmaple](./example/example.ts)代码
 
 ## TODO
-- [] 测试用例覆盖sqlite
-- [] husky
-- [] 阅读anki源码，调整代码
-- [] 完善中文文档
-- [] 英文文档
+- [ ] 测试用例覆盖sqlite
+- [ ] husky
+- [ ] 阅读anki源码，调整代码
+- [ ] 完善中文文档
+- [ ] 英文文档
 
 ## Example
 [exmaple](./example/example.ts)
