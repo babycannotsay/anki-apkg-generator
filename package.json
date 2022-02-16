@@ -6,6 +6,7 @@
   "browser": {
     "./lib/index.js": "./dist/index.min.js"
   },
+  "files": [ "/dist/index.min.js", "/lib" ],
   "scripts": {
     "webpack:dev": "NODE_ENV=development webpack",
     "webpack:prod": "NODE_ENV=production webpack",
