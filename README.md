@@ -18,6 +18,7 @@ generate anki's apkg file by simple code
 - [ ] 阅读anki源码，调整代码
 - [ ] 完善中文文档
 - [ ] 英文文档
+- [ ] 了解wasm by sql.js
 
 ## Example
 [exmaple](./example/example.ts)
