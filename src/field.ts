@@ -1,8 +1,8 @@
 export default class Field {
-    public ord = 0
+    public ord? = 0
     public name: string
-    public font = 'Arial'
-    public size = 12
+    public font? = 'Arial'
+    public size? = 12
 
     constructor (name = '') {
         this.name = name
