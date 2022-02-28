@@ -1,4 +1,4 @@
-import Zip from 'jszip'
+import JSZip from 'jszip'
 import initSqlJs from 'sql.js'
 import Db from './database'
 import type Deck from './deck'
@@ -9,12 +9,12 @@ const isBrowser = process.env.APP_ENV === 'browser' || typeof window !== 'undefi
 
 export default class Package {
     public db!: Db
-    public zip: Zip
+    public zip: JSZip
     public decks: Deck[] = []
     public medias: Media[]
     constructor (decks: Deck[] | Deck, medias: Media[] = []) {
         this.decks = this.decks.concat(decks)
-        this.zip = new Zip()
+        this.zip = new JSZip()
         this.medias = medias
     }
 

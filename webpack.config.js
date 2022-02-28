@@ -18,6 +18,10 @@ module.exports = {
             process: require.resolve('process/browser'),
         }
     },
+    externals: {
+        jszip: 'JSZip',
+        buffer: 'buffer'
+    },
     module: {
         rules: [
             {
