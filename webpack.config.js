@@ -19,7 +19,7 @@ module.exports = {
         }
     },
     externals: {
-        jszip: 'JSZip',
+        jszip: 'jszip',
         buffer: 'buffer'
     },
     module: {
