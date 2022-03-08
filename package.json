@@ -1,6 +1,6 @@
 {
   "name": "anki-apkg-generator",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "generate anki's apkg file by code",
   "main": "lib/index.js",
   "browser": {
