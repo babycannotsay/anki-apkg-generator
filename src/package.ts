@@ -19,7 +19,7 @@ export default class Package {
     }
 
     private _initSql () {
-        const config = isBrowser ? { locateFile: (filename: string) => `https://sql.js.org/dist/${filename}` } : undefined
+        const config = isBrowser ? { locateFile: (filename: string) => `https://cdn.jsdelivr.net/anki-apkg-generator/wasm/${filename}` } : undefined
         return initSqlJs(config).then(sql => {
             this.db = new Db(sql, createTemplate())
         })

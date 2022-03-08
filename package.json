@@ -8,7 +8,8 @@
   },
   "files": [
     "/dist/index.min.js",
-    "/lib"
+    "/lib",
+    "/wasm"
   ],
   "scripts": {
     "webpack:dev": "NODE_ENV=development webpack",
