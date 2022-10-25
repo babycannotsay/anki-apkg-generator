@@ -12,8 +12,8 @@
     "/wasm"
   ],
   "scripts": {
-    "webpack:dev": "NODE_ENV=development webpack",
-    "webpack:prod": "NODE_ENV=production webpack",
+    "webpack:dev": "cross-env NODE_ENV=development webpack",
+    "webpack:prod": "cross-env NODE_ENV=production webpack",
     "analyzer": "webpack --json > stats.json && webpack-bundle-analyzer stats.json",
     "test": "jest",
     "ts-node": "ts-node",
@@ -49,6 +49,7 @@
     "@typescript-eslint/eslint-plugin": "^5.10.2",
     "@typescript-eslint/parser": "^5.10.2",
     "clean-webpack-plugin": "^4.0.0",
+    "cross-env": "^7.0.3",
     "eslint": "^8.8.0",
     "eslint-config-prettier": "^8.3.0",
     "inspectpack": "^4.7.1",
@@ -63,8 +64,8 @@
     "webpack-cli": "^4.9.2"
   },
   "peerDependencies": {
-    "jszip": "^3.7.1",
-    "buffer": "^6.0.3"
+    "buffer": "^6.0.3",
+    "jszip": "^3.7.1"
   },
   "dependencies": {
     "create-hash": "^1.2.0",

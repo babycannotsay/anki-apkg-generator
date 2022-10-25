@@ -52,6 +52,6 @@ export default class Db {
             .prepare(query)
             .getAsObject({ ':note_id': noteId })
 
-        return rowObj.id || this.getId('cards', 'id', ts)
+        return Number(rowObj.id) || this.getId('cards', 'id', ts)
     }
 }
