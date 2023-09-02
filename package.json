@@ -3,6 +3,7 @@
   "version": "1.0.8",
   "description": "generate anki's apkg file by code",
   "main": "lib/index.js",
+  "type": "module",
   "browser": {
     "./lib/index.js": "./dist/index.min.js"
   },
@@ -54,6 +55,7 @@
     "eslint-config-prettier": "^8.3.0",
     "inspectpack": "^4.7.1",
     "jest": "^27.5.0",
+    "jszip": "^3.10.1",
     "process": "^0.11.10",
     "stream-browserify": "^3.0.0",
     "ts-loader": "^9.2.6",
