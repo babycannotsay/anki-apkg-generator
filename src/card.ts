@@ -28,28 +28,31 @@ export default class Card {
     }
 
     writeToDatabase (db: Db, deckId: number, noteId: number, timestamp: number) {
-        db.update(
-            'insert or replace into cards values(:id,:nid,:did,:ord,:mod,:usn,:type,:queue,:due,:ivl,:factor,:reps,:lapses,:left,:odue,:odid,:flags,:data)',
-            {
-                ':id': db.getCardId(noteId, timestamp), // integer primary key,
-                ':nid': noteId, // integer not null, note_id
-                ':did': deckId, // integer not null, deck_id
-                ':ord': 0, // integer not null, template_idx
-                ':mod': db.getId('cards', 'mod', timestamp), // integer not null, mtime_secs
-                ':usn': -1, // integer not null,
-                ':type': 0, // integer not null,
-                ':queue': 0, // integer not null,
-                ':due': 179, // integer not null,
-                ':ivl': 0, // integer not null, interval
-                ':factor': 0, // integer not null, ease_factor
-                ':reps': 0, // integer not null,
-                ':lapses': 0, // integer not null,
-                ':left': 0, // integer not null, remaining_steps
-                ':odue': 0, // integer not null, original_due
-                ':odid': 0, // integer not null, original_deck_id
-                ':flags': 0, // integer not null,
-                ':data': '', // text not null
-            }
-        )
+        const id = db.getCardId(noteId, timestamp)
+        for (let i = 0; i < this.templates.length; i++) {
+            db.update(
+                'insert or replace into cards values(:id,:nid,:did,:ord,:mod,:usn,:type,:queue,:due,:ivl,:factor,:reps,:lapses,:left,:odue,:odid,:flags,:data)',
+                {
+                    ':id': id + i, // integer primary key,
+                    ':nid': noteId, // integer not null, note_id
+                    ':did': deckId, // integer not null, deck_id
+                    ':ord': i, // integer not null, template_idx
+                    ':mod': db.getId('cards', 'mod', timestamp), // integer not null, mtime_secs
+                    ':usn': -1, // integer not null,
+                    ':type': 0, // integer not null,
+                    ':queue': 0, // integer not null,
+                    ':due': 179, // integer not null,
+                    ':ivl': 0, // integer not null, interval
+                    ':factor': 0, // integer not null, ease_factor
+                    ':reps': 0, // integer not null,
+                    ':lapses': 0, // integer not null,
+                    ':left': 0, // integer not null, remaining_steps
+                    ':odue': 0, // integer not null, original_due
+                    ':odid': 0, // integer not null, original_deck_id
+                    ':flags': 0, // integer not null,
+                    ':data': '', // text not null
+                }
+            )
+        }
     }
 }

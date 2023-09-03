@@ -12,15 +12,10 @@ module.exports = {
             fs: false,
             crypto: false,
             path: false,
-            stream: false,
             buffer: require.resolve('buffer/'),
             stream: require.resolve('stream-browserify'),
             process: require.resolve('process/browser'),
         }
-    },
-    externals: {
-        jszip: 'jszip',
-        buffer: 'buffer'
     },
     module: {
         rules: [
@@ -44,11 +39,14 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: 'index.min.js',
         library: {
-            name: 'AnkiGenerator', // ignore in node
-            type: 'umd'
+            type: 'module'
         },
         globalObject: 'this',
     },
     target: 'web',
     devtool: process.env.NODE_ENV === 'development' ? 'source-map' : false,
+    experiments: {
+        outputModule: true,
+    },
 }
+
